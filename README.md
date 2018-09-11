@@ -169,6 +169,16 @@ $ git changes
 
 ### Convoluted Aliases
 
+Commit changes as part of the prior commit, keeping the commit message the same. This is similar to creating a new commit and squashing into the prior commit.
+
+```
+$ git add .
+$ git ctp
+[master a6cdb0f] feat: Add unstage and changes aliases
+ Date: Tue Sep 11 11:38:32 2018 +0100
+ 2 files changed, 33 insertions(+), 8 deletions(-)
+```
+
 Undo the last N commits
 
 ```
