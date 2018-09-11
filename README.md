@@ -197,3 +197,19 @@ undo=!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f
 bsort=!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'
 squash=!f(){ git reset --soft HEAD~${1} && git commit --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"; };f
 ```
+
+Word and line counts
+
+```
+$ git wc
+  25 .bash_profile
+ 150 .gitconfig
+ 676 README.md
+ 851 total
+
+$ git lc
+   5 .bash_profile
+  26 .gitconfig
+ 198 README.md
+ 229 total
+```
