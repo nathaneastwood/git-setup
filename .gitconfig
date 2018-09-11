@@ -4,17 +4,17 @@
     ls      = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
     ll      = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     lg      = log --graph --all  --decorate --oneline
-	dl      = "!git ll -1"
+    dl      = "!git ll -1"
     standup = !git log --since yesterday --author $(git config user.email) --pretty=short
     filelog = log -u
-	# }}}
+    # }}}
 	
     # diff commands {{{
     dr  = "!f() { git diff "$1"^.."$1"; }; f"
     dlc = diff --cached HEAD^
     # }}}
     
-	# convoluted aliases {{{
+    # convoluted aliases {{{
     la     = "!git config -l | grep alias | cut -c 7-"
     lc     = "!git ls-files | xargs wc -l"
     wc     = "!git ls-files | xargs wc -w"
