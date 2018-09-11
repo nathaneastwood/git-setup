@@ -1,30 +1,24 @@
 # alias {{{
 [alias]
     # log commands {{{
-    ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
-    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-    lg = log --graph --all  --decorate --oneline
+    ls      = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+    ll      = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    lg      = log --graph --all  --decorate --oneline
+	dl      = "!git ll -1"
     standup = !git log --since yesterday --author $(git config user.email) --pretty=short
-    # see all the commits related to a file: git filelog filename
     filelog = log -u
-    # show modified files in the last commit: git dl
-    dl = "!git ll -1"
-    # show a diff last commit: git dlc
-    dlc = diff --cached HEAD^
-    # show content (full diff) of a commit given a revision: git dr 8cf2224
+	# }}}
+	
+    # diff commands {{{
     dr  = "!f() { git diff "$1"^.."$1"; }; f"
-    lc  = "!f() { git ll "$1"^.."$1"; }; f"
+    dlc = diff --cached HEAD^
     # }}}
-    # convoluted aliases {{{
-    # undo the last N commits: git undo N
-    undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
-    # }}}
-    # squash N commits: git squash N {{{
+    
+	# convoluted aliases {{{
+    la     = "!git config -l | grep alias | cut -c 7-"
+    undo   = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
+    bsort  = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
     squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
-    # show aliases: git la
-    la = "!git config -l | grep alias | cut -c 7-"
     # }}}
-    # list branches sorted by last modified {{{
-    b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
-    # }}}
+	
 #}}}
