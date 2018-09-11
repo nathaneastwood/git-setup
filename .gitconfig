@@ -3,6 +3,15 @@
     # log commands {{{
     ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    # see all the commits related to a file: git filelog filename
+    filelog = log -u
+    # show modified files in the last commit: git dl
+    dl = "!git ll -1"
+    # show a diff last commit: git dlc
+    dlc = diff --cached HEAD^
+    # show content (full diff) of a commit given a revision: git dr 8cf2224
+    dr  = "!f() { git diff "$1"^.."$1"; }; f"
+    lc  = "!f() { git ll "$1"^.."$1"; }; f"
     # }}}
     # convoluted aliases {{{
     # undo the last N commits: git undo N
@@ -10,5 +19,7 @@
     # }}}
     # squash N commits: git squash N {{{
     squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
+    # show aliases: git la
+    la = "!git config -l | grep alias | cut -c 7-"
     # }}}
 #}}}
