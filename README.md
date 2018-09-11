@@ -167,37 +167,7 @@ $ git changes
  2 files changed, 9 insertions(+), 2 deletions(-)
 ```
 
-### Convoluted Aliases
-
-Commit changes as part of the prior commit, keeping the commit message the same. This is similar to creating a new commit and squashing into the prior commit.
-
-```
-$ git add .
-$ git ctp
-[master a6cdb0f] feat: Add unstage and changes aliases
- Date: Tue Sep 11 11:38:32 2018 +0100
- 2 files changed, 33 insertions(+), 8 deletions(-)
-```
-
-Undo the last N commits
-
-```
-$ git undo 1
-HEAD is now at 2be81bc feat: Add more log and branch aliases
-```
-
-Squash the last N commits
-
-```
-$ git squash 2
-```
-
-List all branches sorted by the last modified
-
-```
-$ git bsort
-Tue Sep 11 10:12:56 2018 +0100  f0fae0a master
-```
+### Unstaging and Undoing
 
 Remove one or more files from the staging area
 
@@ -211,6 +181,42 @@ $ git unstage README.md
 Unstaged changes after reset:
 M       README.md
 ```
+
+Undo the last N commits
+
+```
+$ git undo 1
+HEAD is now at 2be81bc feat: Add more log and branch aliases
+```
+
+### Commiting and Squashing
+
+Commit changes as part of the prior commit, keeping the commit message the same. This is similar to creating a new commit and squashing into the prior commit.
+
+```
+$ git add .
+$ git ctp
+[master a6cdb0f] feat: Add unstage and changes aliases
+ Date: Tue Sep 11 11:38:32 2018 +0100
+ 2 files changed, 33 insertions(+), 8 deletions(-)
+```
+
+Squash the last N commits
+
+```
+$ git squash 2
+```
+
+### Branches
+
+List all branches sorted by the last modified
+
+```
+$ git bsort
+Tue Sep 11 10:12:56 2018 +0100  f0fae0a master
+```
+
+### Listing Aliases
 
 List all aliases
 
@@ -229,6 +235,8 @@ undo=!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f
 bsort=!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'
 squash=!f(){ git reset --soft HEAD~${1} && git commit --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"; };f
 ```
+
+### Counts
 
 Word and line counts
 
