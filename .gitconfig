@@ -3,6 +3,8 @@
     # log commands {{{
     ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    lg = log --graph --all  --decorate --oneline
+    standup = !git log --since yesterday --author $(git config user.email) --pretty=short
     # see all the commits related to a file: git filelog filename
     filelog = log -u
     # show modified files in the last commit: git dl
@@ -21,5 +23,8 @@
     squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
     # show aliases: git la
     la = "!git config -l | grep alias | cut -c 7-"
+    # }}}
+    # list branches sorted by last modified {{{
+    b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
     # }}}
 #}}}
