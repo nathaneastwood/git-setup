@@ -158,6 +158,15 @@ index 0000000..006786c
 +
 ```
 
+Show the number of changes between the working tree and the index.
+
+```
+$ git changes
+ .gitconfig | 5 +++--
+ README.md  | 6 ++++++
+ 2 files changed, 9 insertions(+), 2 deletions(-)
+```
+
 ### Convoluted Aliases
 
 Undo the last N commits
@@ -178,6 +187,19 @@ List all branches sorted by the last modified
 ```
 $ git bsort
 Tue Sep 11 10:12:56 2018 +0100  f0fae0a master
+```
+
+Remove one or more files from the staging area
+
+```
+$ git unstage
+Unstaged changes after reset:
+M       .gitconfig
+M       README.md
+
+$ git unstage README.md
+Unstaged changes after reset:
+M       README.md
 ```
 
 List all aliases
