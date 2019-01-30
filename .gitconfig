@@ -24,6 +24,9 @@
     bsort   = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
     squash  = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
     unstage = "!git reset HEAD --"
+    gb      = "!f(){ git branch -a | sed -e 's/[ \\*]*//' | grep -v -e '\\->' | xargs git grep $@; };f "
+    gbr     = "!f(){ git branch -a | sed -e 's/[ \\*]*//' | grep -v -e '\\->' | grep '^remotes' | xargs git grep $@; };f"
+    gbl     = "!f(){ git branch -a | sed -e 's/[ \\*]*//' | grep -v -e '\\->' -e '^remotes' | xargs git grep $@;  };f "
     # }}}
 	
 #}}}

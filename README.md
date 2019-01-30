@@ -236,6 +236,21 @@ bsort=!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectn
 squash=!f(){ git reset --soft HEAD~${1} && git commit --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"; };f
 ```
 
+### Searching Branches
+
+Here are 3 commands that allow you to search all branches for some text:
+
+1. `git gb` - Search in all branches local & remote
+2. `git gbl` - Search in local branches only
+3. `git gbr` - Remote branches only
+
+Usage is the same as [`git grep`](https://git-scm.com/docs/git-grep):
+
+```
+git grep-branch "find my text"
+git grep-branch --some-grep-options "find my text"
+```
+
 ### Counts
 
 Word and line counts
