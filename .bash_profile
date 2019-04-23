@@ -1,8 +1,5 @@
 # Git branch in prompt.
 parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
-parse_git_branch() {
 	hasmod=""
 	if [[ `git ls-files -dmo --exclude-standard 2> /dev/null` ]]; then
 		hasmod="*"
