@@ -10,9 +10,10 @@
     # }}}
 	
     # diff commands {{{
-    dr      = "!f() { git diff "$1"^.."$1"; }; f"
-    dlc     = diff --cached HEAD^
-    changes = diff --stat -r
+    dr       = "!f() { git diff "$1"^.."$1"; }; f"
+    dlc      = diff --cached HEAD^
+    changes  = diff --stat -r
+    bchanges = whatchanged --name-only --pretty="" origin..HEAD
     # }}}
     
     # status commands {{{
