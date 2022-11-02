@@ -27,6 +27,7 @@
     # branches {{{
     dellu   = "!f() { git branch -d "$1" && git push origin --delete "$1"; }; f"
     bsort   = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+    rmgone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"
     # }}}
     
     # {{{
