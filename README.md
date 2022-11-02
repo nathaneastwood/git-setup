@@ -167,7 +167,7 @@ $ git changes
  2 files changed, 9 insertions(+), 2 deletions(-)
 ```
 
-### Unstaging and Undoing
+## Unstaging and Undoing
 
 Remove one or more files from the staging area
 
@@ -214,6 +214,13 @@ List all branches sorted by the last modified
 ```
 $ git bsort
 Tue Sep 11 10:12:56 2018 +0100  f0fae0a master
+```
+
+Clear all `[gone]` branches. This will fetch the latest from `origin`, look for any which have been deleted that you are tracking locally and delete the local branch.
+
+```
+$ git rmgone
+Deleted branch my_branch (was 00543fa)
 ```
 
 ### Listing Aliases
